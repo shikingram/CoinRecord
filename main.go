@@ -92,7 +92,7 @@ func main() {
 				coinCost -= coin.Sum
 			}
 			coinInfo := coinPrice.GetCoinPrice(name)
-			priceUsd,err = strconv.ParseFloat(coinInfo.PriceUsd,64)
+			priceUsd, err = strconv.ParseFloat(coinInfo.PriceUsd, 64)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -116,24 +116,23 @@ func main() {
 	}
 
 	mdDir := filepath.Join(currentDir, "records")
-	_ = os.MkdirAll(mdDir,0666)
+	_ = os.MkdirAll(mdDir, 0666)
 	mdFileName := time.Now().Format("20060102150405") + ".md"
-	mdFilePath := filepath.Join(mdDir,mdFileName)
+	mdFilePath := filepath.Join(mdDir, mdFileName)
 	fmt.Println(mdFilePath)
-	mdFile,err := os.OpenFile(mdFilePath,os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
+	mdFile, err := os.OpenFile(mdFilePath, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer mdFile.Close()
-	_,err = mdFile.WriteString(models.Head+"\r")
+	_, err = mdFile.WriteString(models.Head + "\r" + models.Partition + "\r")
 	if err != nil {
 		log.Fatal(err)
 	}
 	for _, v := range coinInfoVos {
-		var value = fmt.Sprintf(models.ValueFrame,v.Name,v.Amount,v.NowPrice,v.Sum,v.AvgPrice,v.Cost,v.Profit,fmt.Sprintf("%.2f",v.Yield*100)+"%")
-		var str = models.Partition +"\r"+ value
-		fmt.Println(str)
-		mdFile.WriteString(str)
+		var value = fmt.Sprintf(models.ValueFrame, v.Name, v.Amount, v.NowPrice, v.Sum, v.AvgPrice, v.Cost, v.Profit, fmt.Sprintf("%.2f", v.Yield*100)+"%")
+		fmt.Println(value)
+		_, _ = mdFile.WriteString(value)
 	}
 
 	fmt.Println("按任意键继续...")
