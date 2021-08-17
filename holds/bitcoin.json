@@ -1,0 +1,10 @@
+{
+  "records": [
+    {
+     "name": "bitcoin",
+     "operate": "+",
+     "amount": 0.01329424,
+     "sum": 613.82
+    }
+  ]
+}
