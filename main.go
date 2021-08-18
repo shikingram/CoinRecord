@@ -93,9 +93,6 @@ func main() {
 			}
 			coinInfo := coinPrice.GetCoinPrice(name)
 			priceUsd, _ = strconv.ParseFloat(coinInfo.PriceUsd, 64)
-			if err != nil {
-				log.Fatal(err)
-			}
 			coinSum = priceUsd * coinAmount
 			// 利润 = 持仓现价 - 投资总额
 			profit = coinSum - coinCost
