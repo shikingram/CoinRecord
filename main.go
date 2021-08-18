@@ -80,9 +80,6 @@ func main() {
 		var yield float64
 		var priceUsd float64
 		for _, coin := range v.Records {
-			name = coin.Name
-			// 单个币平均成本价格 = 成本价/币的数量
-			avgPrice = coin.Sum / coin.Amount
 			switch coin.Operate {
 			case "+":
 				coinAmount += coin.Amount
@@ -91,14 +88,17 @@ func main() {
 				coinAmount -= coin.Amount
 				coinCost -= coin.Sum
 			}
-			coinInfo := coinPrice.GetCoinPrice(name)
-			priceUsd, _ = strconv.ParseFloat(coinInfo.PriceUsd, 64)
-			coinSum = priceUsd * coinAmount
-			// 利润 = 持仓现价 - 投资总额
-			profit = coinSum - coinCost
-			// 收益率 = 利润/投资总额
-			yield = profit / coinCost
 		}
+		name = v.Name
+		// 单个币平均成本价格 = 总成本/币的数量
+		avgPrice = coinCost / coinAmount
+		coinInfo := coinPrice.GetCoinPrice(name)
+		priceUsd, _ = strconv.ParseFloat(coinInfo.PriceUsd, 64)
+		coinSum = priceUsd * coinAmount
+		// 利润 = 持仓现价 - 投资总额
+		profit = coinSum - coinCost
+		// 收益率 = 利润/投资总额
+		yield = profit / coinCost
 		coinInfoVo := models.CoinInfoVo{
 			Name:     name,
 			Amount:   coinAmount,

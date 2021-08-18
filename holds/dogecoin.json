@@ -1,58 +1,10 @@
 {
+  "name": "doge",
   "records": [
     {
-      "name": "dogecoin",
       "operate": "+",
-      "amount": 500,
-      "sum": 167.485
-    },
-    {
-      "name": "dogecoin",
-      "operate": "+",
-      "amount": 500,
-      "sum": 163.78
-    },
-    {
-      "name": "dogecoin",
-      "operate": "-",
-      "amount": 1000,
-      "sum": 350
-    },
-    {
-      "name": "dogecoin",
-      "operate": "-",
-      "amount": 1000,
-      "sum": 277.6
-    },
-    {
-      "name": "dogecoin",
-      "operate": "-",
-      "amount": 1000,
-      "sum": 277.6
-    },
-    {
-      "name": "dogecoin",
-      "operate": "+",
-      "amount": 300,
-      "sum": 82.05
-    },
-    {
-      "name": "dogecoin",
-      "operate": "+",
-      "amount": 1000,
-      "sum": 198.61
-    },
-    {
-      "name": "dogecoin",
-      "operate": "+",
-      "amount": 1000,
-      "sum": 203.8
-    },
-    {
-      "name": "dogecoin",
-      "operate": "+",
-      "amount": 2627.60,
-      "sum": 784.3386
+      "amount": 8058.7263,
+      "sum": 2394.65
     }
   ]
 }

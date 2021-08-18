@@ -1,0 +1,10 @@
+{
+  "name": "win",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 9991.0,
+      "sum": 6.20
+    }
+  ]
+}

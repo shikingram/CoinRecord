@@ -1,11 +1,11 @@
 package models
 
 type Holds struct {
+	Name    string   `json:"name"`
 	Records []Record `json:"records"`
 }
 
 type Record struct {
-	Name    string  `json:"name"`
 	Operate string  `json:"operate"`
 	Amount  float64 `json:"amount"`
 	Sum     float64 `json:"sum"`
