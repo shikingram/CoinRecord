@@ -92,7 +92,7 @@ func main() {
 				coinCost -= coin.Sum
 			}
 			coinInfo := coinPrice.GetCoinPrice(name)
-			priceUsd, err = strconv.ParseFloat(coinInfo.PriceUsd, 64)
+			priceUsd, _ = strconv.ParseFloat(coinInfo.PriceUsd, 64)
 			if err != nil {
 				log.Fatal(err)
 			}
@@ -125,13 +125,15 @@ func main() {
 		log.Fatal(err)
 	}
 	defer mdFile.Close()
-	_, err = mdFile.WriteString(models.Head + "\r" + models.Partition + "\r")
+	var head = models.Head + "\r" + models.Partition + "\r"
+	_, err = mdFile.WriteString(head)
 	if err != nil {
 		log.Fatal(err)
 	}
+	fmt.Println(head)
 	for _, v := range coinInfoVos {
 		var value = fmt.Sprintf(models.ValueFrame, v.Name, v.Amount, v.NowPrice, v.Sum, v.AvgPrice, v.Cost, v.Profit, fmt.Sprintf("%.2f", v.Yield*100)+"%")
-		fmt.Println(value)
+		fmt.Printf(value)
 		_, _ = mdFile.WriteString(value)
 	}
 

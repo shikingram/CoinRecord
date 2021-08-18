@@ -5,6 +5,7 @@ import (
 	"CoinRecord/models"
 	"encoding/json"
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -42,7 +43,7 @@ func GetAllCoinPrice() error {
 
 func GetCoinPrice(id string) models.CoinInfo {
 	for _, coinInfo := range res.CoinInfos {
-		if coinInfo.Name == id || coinInfo.ID == id {
+		if coinInfo.Name == id || coinInfo.ID == id || coinInfo.Symbol == strings.ToUpper(id) {
 			return coinInfo
 		}
 	}
