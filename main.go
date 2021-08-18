@@ -130,7 +130,7 @@ func main() {
 	fmt.Println(head)
 	for _, v := range coinInfoVos {
 		var value = fmt.Sprintf(models.ValueFrame, v.Name, v.Amount, v.NowPrice, v.Sum, v.AvgPrice, v.Cost, v.Profit, fmt.Sprintf("%.2f", v.Yield*100)+"%")
-		fmt.Printf(value)
+		fmt.Println(value)
 		_, _ = mdFile.WriteString(value)
 	}
 
