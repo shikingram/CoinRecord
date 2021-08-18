@@ -15,8 +15,8 @@ func GetAllCoinPrice() error {
 	//api比较卡，简单加个重试机制
 	var count int
 	var params = make(map[string]string)
+	params["limit"] = "2000"
 	var headers = make(map[string]string)
-
 	for {
 		if count > 10 {
 			break
