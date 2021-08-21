@@ -130,7 +130,7 @@ func main() {
 		coinInfoVo.Profit24h = ProcessFloat((coinInfo.Quote.USD.Price - yesPrice) * coinAmount)
 
 		coinInfoVo.Change24hColor = models.ShallowRed
-		coinInfoVo.DeepChange24hColor = models.ShallowRed
+		coinInfoVo.DeepChange24hColor = models.Red
 		coinInfoVo.YieldColor = models.ShallowRed
 		coinInfoVo.DeepYieldColor = models.Red
 		coinInfoVo.DeepChange7DColor = models.Red
