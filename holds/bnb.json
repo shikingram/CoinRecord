@@ -1,0 +1,10 @@
+{
+  "name": "bnb",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 0.095403,
+      "sum": 40
+    }
+  ]
+}
