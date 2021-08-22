@@ -1,6 +1,6 @@
 # 小工具---自动生成虚拟币收益数据
 ## 下载
-- [windows && osx](https://github.com/K1ngram4/CoinRecord/releases/download/v2.0/BlogTemplate.zip)
+- [windows && osx](https://github.com/K1ngram4/CoinRecord/releases/download/v2.0/coinrecord_v1.2_template_modify.zip)
 
 执行可执行文件即可在records目录下生成md文件，记录收益数据
 
