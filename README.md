@@ -1,23 +1,178 @@
 # 小工具---自动生成虚拟币收益数据
 ## 下载
-- [windows](https://github.com/K1ngram4/CoinRecord/releases/download/V1.0/CoinRecord_win.zip)
-- [osx](https://github.com/K1ngram4/CoinRecord/releases/download/V1.0/CoinRecord_macos.zip)
+- [windows && osx](https://github.com/K1ngram4/CoinRecord/releases/download/v2.0/BlogTemplate.zip)
 
 执行可执行文件即可在records目录下生成md文件，记录收益数据
 
 - 效果
 
-| 币种 | 持有数量       | 现价         | 总金额      | 持仓均价     | 成本        | 利润      | 收益率 |
-| ---- | -------------- | ------------ | ----------- | ------------ | ----------- | --------- | ------ |
-| btc  | 0.013343       | 45168.320300 | 602.680898  | 41737.240501 | 556.900000  | 45.780898 | 8.22%  |
-| doge | 8058.726300    | 0.299873     | 2416.596306 | 0.297150     | 2394.650000 | 21.946306 | 0.92%  |
-| icp  | 0.718261       | 57.868641    | 41.564765   | 57.138036    | 41.040000   | 0.524765  | 1.28%  |
-| shib | 3460860.410000 | 0.000008     | 28.326569   | 0.000008     | 28.240000   | 0.086569  | 0.31%  |
-| win  | 9991.000000    | 0.000635     | 6.340803    | 0.000621     | 6.200000    | 0.140803  | 2.27%  |
+[传送门](http://kingram.top/posts/coin/20210821202426/)
+
+## ⏰ 24小时收益情况
+📌 过去的24小时我的持仓总收益为：<font color=#FF0000 size=5 >**0**</font> USDT
+
+👉 每个币种的详细数据如下：
+<table>
+    <thead><tr bgcolor="#d0d0d0" ><th>币种</th><th>排名</th><th>市值(USDT)</th><th>24h交易量(USDT)</th><th>24h%</th><th>7d%</th><th>24h收益</th></tr></thead>
+    <tbody>
+    <tr>
+        <td bgcolor=#FFECEC>btc</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>bnb</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>dot</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>eth</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>ftt</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>link</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>uni</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000>0.00%</font></td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>0</strong></font></td>
+    </tr>
+    </tbody>
+</table>
+
+## 🎯 持仓整体收益数据
+
+🔒 我的持仓总成本为：<font size=3 >**400**</font> USDT，截止 **2021-08-22 11:18:12**，总价值为：<font  size=5 >**0**</font> USDT
+
+💰 利润： <font color=#FF0000 size=3 >**-400**</font> USDT，收益率：<font color=#FF0000 size=4 >**-100.00%**</font>
+
+👉 每个币种的详细收益数据如下：
+
+<table>
+    <thead><tr bgcolor="#d0d0d0" ><th>币种</th><th>持有数量(个)</th><th>现价(USDT)</th><th>总金额(USDT)</th><th>持仓均价(USDT)</th><th>成本(USDT)</th><th>利润(USDT)</th><th>收益率</th></tr></thead>
+    <tbody>
+    <tr>
+        <td bgcolor=#FFECEC>btc</td>
+        <td bgcolor=#FFECEC>0.002185</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>45766.59038902</td>
+        <td bgcolor=#FFECEC>100</td>
+        <td bgcolor=#FFECEC>-100</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>bnb</td>
+        <td bgcolor=#FFECEC>0.095403</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>419.27402702</td>
+        <td bgcolor=#FFECEC>40</td>
+        <td bgcolor=#FFECEC>-40</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>dot</td>
+        <td bgcolor=#FFECEC>1.559096</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>25.6558929</td>
+        <td bgcolor=#FFECEC>40</td>
+        <td bgcolor=#FFECEC>-40</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>eth</td>
+        <td bgcolor=#FFECEC>0.032844</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>3044.69613933</td>
+        <td bgcolor=#FFECEC>100</td>
+        <td bgcolor=#FFECEC>-100</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>ftt</td>
+        <td bgcolor=#FFECEC>0.840243</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>47.60527609</td>
+        <td bgcolor=#FFECEC>40</td>
+        <td bgcolor=#FFECEC>-40</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>link</td>
+        <td bgcolor=#FFECEC>1.526624</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>26.20160563</td>
+        <td bgcolor=#FFECEC>40</td>
+        <td bgcolor=#FFECEC>-40</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    <tr>
+        <td bgcolor=#FFECEC>uni</td>
+        <td bgcolor=#FFECEC>1.497</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>0</td>
+        <td bgcolor=#FFECEC>26.72010688</td>
+        <td bgcolor=#FFECEC>40</td>
+        <td bgcolor=#FFECEC>-40</td>
+        <td bgcolor=#FFECEC><font color=#FF0000 size=3 ><strong>-100.00%</strong></font></td>
+    </tr>
+    </tbody>
+</table>
+
+## ⚠️ 风险友情提示
+❤️ 本篇文章仅作为个人投资记录使用，区块链投资风险巨大，请管好你自己的钱袋子呦～ ❤️
 
 
 ## 配置说明
-- 配置文件在holds目录下，json格式，多条记录分开
+- cfg下需要配置coinmarket.com的apikey，可以去申请[coinmarketcap.com/api](https://coinmarketcap.com/api/)
+
+- 操作配置文件在holds目录下，json格式，多条记录分开
 ```json
 {
   "name": "btc",

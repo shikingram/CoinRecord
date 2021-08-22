@@ -2,6 +2,7 @@ package main
 
 import (
 	"CoinRecord/coinPrice"
+	"CoinRecord/global"
 	"CoinRecord/models"
 	"embed"
 	"encoding/json"
@@ -22,13 +23,6 @@ var fs embed.FS
 
 func main() {
 
-	err := coinPrice.GetAllCoinPrice()
-	err = coinPrice.GetCoinMarketCap()
-	if err != nil {
-		log.Fatal(err)
-		return
-	}
-
 	var getCurrentDirectory = func() string {
 		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
 		if err != nil {
@@ -39,6 +33,15 @@ func main() {
 
 	currentDir := getCurrentDirectory()
 	fmt.Println("current DIR:", currentDir)
+
+	global.LoadApiKey(currentDir)
+
+	err := coinPrice.GetAllCoinPrice()
+	err = coinPrice.GetCoinMarketCap()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
 	holdsDir := filepath.Join(currentDir, "holds")
 
@@ -212,7 +215,7 @@ func main() {
 	} else {
 		templateValue.TotalVolumeColor = models.Red
 	}
-	templateValue.TotalVolume24hYesterdayPercentageChange = fmt.Sprintf("%.2f",tmcpc)+"%"
+	templateValue.TotalVolume24hYesterdayPercentageChange = fmt.Sprintf("%.2f",tvcpc)+"%"
 
 	// 把模板编进二进制文件中
 	tmpl, err := template.ParseFS(fs, "template/*.tmpl")

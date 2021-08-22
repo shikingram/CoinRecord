@@ -1,6 +1,7 @@
 package httpUtil
 
 import (
+	"CoinRecord/global"
 	"context"
 	"fmt"
 	"github.com/pkg/errors"
@@ -26,7 +27,7 @@ func HttpGet(url string, params map[string]string, headers map[string]string) ([
 		return []byte{}, errors.New("new request is fail ")
 	}
 	req.Header.Set("Accepts", "application/json")
-	req.Header.Add("X-CMC_PRO_API_KEY", "27f65df8-ff71-49a9-829f-176b3a41426b")
+	req.Header.Add("X-CMC_PRO_API_KEY", global.GlobalObject.ApiKey)
 	//add params
 	q := req.URL.Query()
 	if params != nil {
