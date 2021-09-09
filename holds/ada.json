@@ -1,0 +1,10 @@
+{
+  "name": "ada",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 14.1,
+      "sum": 40
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "xrp",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 29,
+      "sum": 40
+    }
+  ]
+}
