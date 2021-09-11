@@ -82,6 +82,7 @@ func main() {
 	var coinInfoVos []models.CoinInfoVo
 	var coinNames []string
 	var coinCosts []float64
+	var coinProfits []float64
 	for i, v := range allHolds {
 		fmt.Printf("id: %d,value:%+v \n", i, v)
 		//遍历所有记录计算投资总额，成本价，币的数量
@@ -127,6 +128,7 @@ func main() {
 		// 添加pie数组
 		coinNames = append(coinNames, name)
 		coinCosts = append(coinCosts, ProcessFloat(coinCost))
+		coinProfits = append(coinProfits, ProcessFloat(profit))
 
 		coinInfoVo.MarketCap = ConvertFloatToString(coinInfo.Quote.USD.MarketCap)
 		coinInfoVo.Volume24H = ConvertFloatToString(coinInfo.Quote.USD.Volume24H)
@@ -196,6 +198,8 @@ func main() {
 	templateValue.IncomeData = coinInfoVos
 	//保存pie图的信息
 	templateValue.PieContent = chart.GetPieString(coinCosts, coinNames)
+	//保存柱状图信息
+	templateValue.BarContent = chart.GetBarString(coinProfits, coinNames)
 	templateValue.YesterdayProfit = yesProfit
 	templateValue.Days = timeSub(time.Now(), StringToTime(StartTime))
 	templateValue.YesterdayProfitColor = models.Red

@@ -14,6 +14,8 @@ func getRandomColorArray(nums int) []string {
 	return arr
 }
 
+var colorArr []string
+
 func GetPieString(cost []float64, names []string) string {
 	o := NewPieStruct(cost, names)
 	s, _ := json.Marshal(o)
@@ -21,10 +23,11 @@ func GetPieString(cost []float64, names []string) string {
 }
 
 func NewPieStruct(cost []float64, names []string) *PieStruct {
+	colorArr = getRandomColorArray(len(names))
 	var ds = []Datasets{
 		{
 			Data:            cost,
-			BackgroundColor: getRandomColorArray(len(names)),
+			BackgroundColor: colorArr,
 		},
 	}
 	return &PieStruct{
@@ -37,7 +40,7 @@ func NewPieStruct(cost []float64, names []string) *PieStruct {
 			Plugins: Plugins{
 				Title: Title{
 					Display: true,
-					Text:    "kingram的持仓pie图分布",
+					Text:    "kingram的持仓环形分布图(单位：usdt)",
 				},
 				Legend: Legend{
 					Display:  true,

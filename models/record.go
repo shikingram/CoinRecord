@@ -96,4 +96,5 @@ type TemplateValue struct {
 	IncomeData []CoinInfoVo
 	//pieString
 	PieContent string
+	BarContent string
 }
