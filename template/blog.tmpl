@@ -17,12 +17,7 @@
 - 🍤 24h总交易量为：<font color={{.TotalVolumeColor}} size=4 > **{{.TotalVolume24h}}**</font> USDT，24h内变化：<font color={{.TotalVolumeColor}} size=5 > **{{.TotalVolume24hYesterdayPercentageChange}}**</font>
 
 ## 🎨 我的持仓占比
-```mermaid
-pie title 我的持仓
-{{- range .IncomeData}}
-"{{.Name}}" : {{.Cost}}
-{{- end}}
-```
+   {{ .PieContent}}
 
 ## 📋 我的定投策略
  ✏️ 我的定投策略制定于 **{{.StartTime}}**，今天是我开始定投的第<font color={{.TotalYieldClolor}} size=5 > **{{.Days}}**</font> 天

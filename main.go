@@ -1,18 +1,19 @@
 package main
 
 import (
+	"CoinRecord/chart"
 	"CoinRecord/coinPrice"
 	"CoinRecord/global"
 	"CoinRecord/models"
 	"embed"
 	"encoding/json"
 	"fmt"
-	"html/template"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+	"text/template"
 	"time"
 )
 
@@ -79,6 +80,8 @@ func main() {
 	}
 
 	var coinInfoVos []models.CoinInfoVo
+	var coinNames []string
+	var coinCosts []float64
 	for i, v := range allHolds {
 		fmt.Printf("id: %d,value:%+v \n", i, v)
 		//遍历所有记录计算投资总额，成本价，币的数量
@@ -119,17 +122,21 @@ func main() {
 			Cost:     ProcessFloat(coinCost),
 			Profit:   ProcessFloat(profit),
 			Yield:    fmt.Sprintf("%.2f", yield*100) + "%",
-			CmcRank: coinInfo.CmcRank,
+			CmcRank:  coinInfo.CmcRank,
 		}
+		// 添加pie数组
+		coinNames = append(coinNames, name)
+		coinCosts = append(coinCosts, ProcessFloat(coinCost))
+
 		coinInfoVo.MarketCap = ConvertFloatToString(coinInfo.Quote.USD.MarketCap)
 		coinInfoVo.Volume24H = ConvertFloatToString(coinInfo.Quote.USD.Volume24H)
 		per24h := coinInfo.Quote.USD.PercentChange24H
 		per7d := coinInfo.Quote.USD.PercentChange7D
-		coinInfoVo.PercentChange24H= fmt.Sprintf("%.2f",per24h)+"%"
-		coinInfoVo.PercentChange7D= fmt.Sprintf("%.2f",per7d)+"%"
+		coinInfoVo.PercentChange24H = fmt.Sprintf("%.2f", per24h) + "%"
+		coinInfoVo.PercentChange7D = fmt.Sprintf("%.2f", per7d) + "%"
 		//原单价 = 现单价 / （1+昨日涨幅）
 		//（现单价 - 原单价） * 持有数量 = 昨日收益
-		yesPrice := coinInfo.Quote.USD.Price / (1+(per24h * 0.01))
+		yesPrice := coinInfo.Quote.USD.Price / (1 + (per24h * 0.01))
 		coinInfoVo.Profit24h = ProcessFloat((coinInfo.Quote.USD.Price - yesPrice) * coinAmount)
 
 		coinInfoVo.Change24hColor = models.ShallowRed
@@ -137,7 +144,7 @@ func main() {
 		coinInfoVo.YieldColor = models.ShallowRed
 		coinInfoVo.DeepYieldColor = models.Red
 		coinInfoVo.DeepChange7DColor = models.Red
-		if per24h > 0{
+		if per24h > 0 {
 			coinInfoVo.Change24hColor = models.ShallowGreen
 			coinInfoVo.DeepChange24hColor = models.Green
 		}
@@ -177,7 +184,7 @@ func main() {
 	}
 	totalYield = totalProfit / totalCost
 	totalYieldString := fmt.Sprintf("%.2f", totalYield*100) + "%"
-	var templateValue = models.TemplateValue {
+	var templateValue = models.TemplateValue{
 		StartTime:   StartTime,
 		NowTime:     TimeFormat(time.Now()),
 		NowDay:      time.Now().Format("2006-01-02"),
@@ -187,6 +194,8 @@ func main() {
 		TotalSum:    ProcessFloat(totalSum),
 	}
 	templateValue.IncomeData = coinInfoVos
+	//保存pie图的信息
+	templateValue.PieContent = chart.GetPieString(coinCosts, coinNames)
 	templateValue.YesterdayProfit = yesProfit
 	templateValue.Days = timeSub(time.Now(), StringToTime(StartTime))
 	templateValue.YesterdayProfitColor = models.Red
@@ -194,7 +203,7 @@ func main() {
 	if totalYield > 0 {
 		templateValue.TotalYieldClolor = models.Green
 	}
-	if templateValue.YesterdayProfit> 0 {
+	if templateValue.YesterdayProfit > 0 {
 		templateValue.YesterdayProfitColor = models.Green
 	}
 	//保存行情信息
@@ -206,7 +215,7 @@ func main() {
 	} else {
 		templateValue.TotalMarketColor = models.Red
 	}
-	templateValue.TotalMarketCapYesterdayPercentageChange = fmt.Sprintf("%.2f",tmcpc)+"%"
+	templateValue.TotalMarketCapYesterdayPercentageChange = fmt.Sprintf("%.2f", tmcpc) + "%"
 
 	templateValue.TotalVolume24h = ConvertFloatToString(coinPrice.GRes.Data.Quote.USD.TotalVolume24H)
 	tvcpc := coinPrice.GRes.Data.Quote.USD.TotalVolume24HYesterdayPercentageChange
@@ -215,7 +224,7 @@ func main() {
 	} else {
 		templateValue.TotalVolumeColor = models.Red
 	}
-	templateValue.TotalVolume24hYesterdayPercentageChange = fmt.Sprintf("%.2f",tvcpc)+"%"
+	templateValue.TotalVolume24hYesterdayPercentageChange = fmt.Sprintf("%.2f", tvcpc) + "%"
 
 	// 把模板编进二进制文件中
 	tmpl, err := template.ParseFS(fs, "template/*.tmpl")

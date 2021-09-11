@@ -19,7 +19,7 @@ func HttpGet(url string, params map[string]string, headers map[string]string) ([
 			}).DialContext,
 		},
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 2000*time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	//new request
 	req, err := http.NewRequest(http.MethodGet, url, nil)

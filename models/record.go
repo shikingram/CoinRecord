@@ -36,11 +36,11 @@ type CoinInfoVo struct {
 	//收益率
 	Yield string
 	//颜色
-	YieldColor     string
-	DeepYieldColor string
-	Change24hColor string
+	YieldColor         string
+	DeepYieldColor     string
+	Change24hColor     string
 	DeepChange24hColor string
-	DeepChange7DColor string
+	DeepChange7DColor  string
 	//排名
 	CmcRank int
 	//市值
@@ -51,14 +51,14 @@ type CoinInfoVo struct {
 	PercentChange24H string
 	//7天变化
 	PercentChange7D string
-	Profit24h float64
+	Profit24h       float64
 }
 
 type TemplateValue struct {
 	// 总市值
 	TotalMarketCap string
 	//总交易量
-	TotalVolume24h string
+	TotalVolume24h   string
 	TotalVolumeColor string
 	TotalMarketColor string
 	//较昨日总交易量变化百分比
@@ -80,7 +80,7 @@ type TemplateValue struct {
 	//今天日期
 	NowDay string
 	//24h收益
-	YesterdayProfit float64
+	YesterdayProfit      float64
 	YesterdayProfitColor string
 	//总利润
 	TotalProfit float64
@@ -94,4 +94,6 @@ type TemplateValue struct {
 	TotalYieldClolor string
 	//收益数据
 	IncomeData []CoinInfoVo
+	//pieString
+	PieContent string
 }
