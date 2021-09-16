@@ -6,7 +6,10 @@ import (
 )
 
 func TestRandomColor(t *testing.T) {
-	a := getRandomColorArray(6)
-	fmt.Println(len(a))
-	fmt.Printf("%+v", a)
+
+	for i := 0; i < 5; i++ {
+		a := getRandomColorArray(6)
+		fmt.Println(len(a))
+		fmt.Printf("%+v", a)
+	}
 }
