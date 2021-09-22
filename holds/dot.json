@@ -15,6 +15,11 @@
       "operate": "+",
       "amount": 1.38,
       "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 1.45,
+      "sum": 40
     }
   ]
 }
