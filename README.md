@@ -170,6 +170,11 @@
 
 
 ## 配置说明
+- 20210928添加了代理
+```shell
+set http_proxy=http://127.0.0.1:1081
+```
+
 - cfg下需要配置coinmarket.com的apikey，可以去申请[coinmarketcap.com/api](https://coinmarketcap.com/api/)
 
 - 操作配置文件在holds目录下，json格式，多条记录分开
