@@ -1,0 +1,85 @@
+{
+"title":"{{.NowDay}} 数字货币定投日记，收益率：{{.TotalYield}}",
+"tags":[
+"invest",
+"cryptocurrency"
+],
+"date":"{{.NowDay}}",
+"lastmod":"{{.NowDay}}",
+"draft":"false",
+"author":"kingram"
+}
+
+##  📊 今日行情
+### 截止 <font color=grey size=5 >**{{.NowTime}}**</font>
+- 🍖 全球加密市场总市值为：<font color={{.TotalMarketColor}} size=4 > **{{.TotalMarketCap}}**</font> USDT，24h内变化：<font color={{.TotalMarketColor}} size=5 > **{{.TotalMarketCapYesterdayPercentageChange}}**</font>
+
+- 🍤 24h总交易量为：<font color={{.TotalVolumeColor}} size=4 > **{{.TotalVolume24h}}**</font> USDT，24h内变化：<font color={{.TotalVolumeColor}} size=5 > **{{.TotalVolume24hYesterdayPercentageChange}}**</font>
+
+## 🎨 我的持仓占比
+{{ .PieContent}}
+
+## 🍺 我的定投收益分布
+{{ .BarContent}}
+
+## 📋 我的定投策略
+
+> 由于我在币圈投资总是被割韭菜，因此觉得自己没有能力在市场获得可观的收益，所以我选择践行定投策略。定投的核心机理就是熊市总是比牛市长，并且长很多很多……我通过定投不断的在漫长的熊市中积聚能量。
+
+### ✏️ 我的定投策略制定于 **{{.StartTime}}**，今天是我践行定投策略的第<font color={{.TotalYieldClolor}} size=5 > **{{.Days}}**</font> 天。
+我将以月为单位，每月定投 <font size=3 ><strong> 500 </strong></font> USDT(根据行情不同会有调整，比如某个月大跌会投两到三次也有可能)。具体币种选择如下。我的这个策略覆盖的币种比较广，也属于广撒网的形式，除了空气币可能卖出外，其他币种坚定长期持有。
+
+- 🥇 当月市值最高的币种 <font size=4 >100</font>USDT
+- 🥈 当月市值第2高的币种 <font size=4 >100</font>USDT
+- 🥉 当月市值前20选6个币种，合计 <font size=4 >240</font>USDT
+- 🏅 感兴趣(被CX)或者社区治理优秀的3个币种，合计<font size=4 >60</font>USDT
+
+## ⏰ 24小时收益情况
+📌 过去的24小时我的持仓总收益为：<font color={{.YesterdayProfitColor}} size=5 >**{{.YesterdayProfit}}**</font> USDT
+
+👉 每个币种的详细数据如下：
+<table>
+    <thead><tr bgcolor="#d0d0d0" ><th>币种</th><th>排名</th><th>市值(USDT)</th><th>24h交易量(USDT)</th><th>24h%</th><th>7d%</th><th>24h收益</th></tr></thead>
+    <tbody>
+    {{- range .IncomeData}}
+    <tr>
+        <td bgcolor={{.Change24hColor}}>{{.Name}}</td>
+        <td bgcolor={{.Change24hColor}}>{{.CmcRank}}</td>
+        <td bgcolor={{.Change24hColor}}>{{.MarketCap}}</td>
+        <td bgcolor={{.Change24hColor}}>{{.Volume24H}}</td>
+        <td bgcolor={{.Change24hColor}}><font color={{.DeepChange24hColor}}>{{.PercentChange24H}}</font></td>
+        <td bgcolor={{.Change24hColor}}><font color={{.DeepChange7DColor}}>{{.PercentChange7D}}</font></td>
+        <td bgcolor={{.Change24hColor}}><font color={{.DeepChange24hColor}} size=3 ><strong>{{.Profit24h}}</strong></font></td>
+    </tr>
+    {{- end}}
+    </tbody>
+</table>
+
+## 🎯 持仓整体收益数据
+
+🔒 我的持仓总成本为：<font size=3 >**{{.TotalCost}}**</font> USDT，截止 **{{.NowTime}}**，总价值为：<font  size=5 >**{{.TotalSum}}**</font> USDT
+
+💰 利润： <font color={{.TotalYieldClolor}} size=3 >**{{.TotalProfit}}**</font> USDT，收益率：<font color={{.TotalYieldClolor}} size=4 >**{{.TotalYield}}**</font>
+
+👉 每个币种的详细收益数据如下：
+
+<table>
+    <thead><tr bgcolor="#d0d0d0" ><th>币种</th><th>持有数量(个)</th><th>现价(USDT)</th><th>总金额(USDT)</th><th>持仓均价(USDT)</th><th>成本(USDT)</th><th>利润(USDT)</th><th>收益率</th></tr></thead>
+    <tbody>
+    {{- range .IncomeData}}
+    <tr>
+        <td bgcolor={{.YieldColor}}>{{.Name}}</td>
+        <td bgcolor={{.YieldColor}}>{{.Amount}}</td>
+        <td bgcolor={{.YieldColor}}>{{.NowPrice}}</td>
+        <td bgcolor={{.YieldColor}}>{{.Sum}}</td>
+        <td bgcolor={{.YieldColor}}>{{.AvgPrice}}</td>
+        <td bgcolor={{.YieldColor}}>{{.Cost}}</td>
+        <td bgcolor={{.YieldColor}}>{{.Profit}}</td>
+        <td bgcolor={{.YieldColor}}><font color={{.DeepYieldColor}} size=3 ><strong>{{.Yield}}</strong></font></td>
+    </tr>
+    {{- end}}
+    </tbody>
+</table>
+
+## ⚠️ 风险友情提示
+❤️本篇文章仅作为个人投资记录使用，数字货币交易存在巨大风险，请管好你自己的钱袋子呦～本人不对您的任何交易行为承担担保、赔偿等责任。❤️

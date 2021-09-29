@@ -1,0 +1,10 @@
+{
+  "name": "avax",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 0.31,
+      "sum": 20
+    }
+  ]
+}

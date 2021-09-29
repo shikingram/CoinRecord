@@ -1,0 +1,14 @@
+{
+  "name": "ar",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 0.36,
+      "sum": 20
+    }, {
+      "operate": "+",
+      "amount": 0.52,
+      "sum": 20
+    }
+  ]
+}

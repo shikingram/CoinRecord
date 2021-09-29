@@ -1,0 +1,25 @@
+{
+  "name": "uni",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 1.497,
+      "sum": 40
+    },
+	{
+      "operate": "+",
+      "amount": 1.37,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 1.8,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 2.01,
+      "sum": 40
+    }
+  ]
+}

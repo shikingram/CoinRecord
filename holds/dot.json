@@ -1,0 +1,25 @@
+{
+  "name": "dot",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 1.559096,
+      "sum": 40
+    },
+	{
+      "operate": "+",
+      "amount": 1.17,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 1.38,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 1.45,
+      "sum": 40
+    }
+  ]
+}

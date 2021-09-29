@@ -1,25 +1,30 @@
 package main
 
 import (
+	"CoinRecord/chart"
 	"CoinRecord/coinPrice"
+	"CoinRecord/global"
 	"CoinRecord/models"
+	"embed"
+
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
-	"strconv"
+
 	"strings"
+	"text/template"
 	"time"
 )
 
-func main() {
+const StartTime = "2021-08-19"
 
-	err := coinPrice.GetAllCoinPrice()
-	if err != nil {
-		log.Fatal(err)
-	}
+//go:embed template/*
+var fs embed.FS
+
+func main() {
 
 	var getCurrentDirectory = func() string {
 		dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
@@ -31,6 +36,15 @@ func main() {
 
 	currentDir := getCurrentDirectory()
 	fmt.Println("current DIR:", currentDir)
+
+	global.LoadApiKey(currentDir)
+
+	err := coinPrice.GetAllCoinPrice()
+	err = coinPrice.GetCoinMarketCap()
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
 	holdsDir := filepath.Join(currentDir, "holds")
 
@@ -68,6 +82,11 @@ func main() {
 	}
 
 	var coinInfoVos []models.CoinInfoVo
+
+	var coinNames []string
+	var coinCosts []float64
+	var coinProfits []float64
+
 	for i, v := range allHolds {
 		fmt.Printf("id: %d,value:%+v \n", i, v)
 		//遍历所有记录计算投资总额，成本价，币的数量
@@ -93,21 +112,60 @@ func main() {
 		// 单个币平均成本价格 = 总成本/币的数量
 		avgPrice = coinCost / coinAmount
 		coinInfo := coinPrice.GetCoinPrice(name)
-		priceUsd, _ = strconv.ParseFloat(coinInfo.PriceUsd, 64)
+
+		priceUsd = ProcessFloat(coinInfo.Quote.USD.Price)
+
 		coinSum = priceUsd * coinAmount
 		// 利润 = 持仓现价 - 投资总额
 		profit = coinSum - coinCost
 		// 收益率 = 利润/投资总额
 		yield = profit / coinCost
 		coinInfoVo := models.CoinInfoVo{
-			Name:     name,
-			Amount:   coinAmount,
-			Sum:      coinSum,
-			NowPrice: priceUsd,
-			AvgPrice: avgPrice,
-			Cost:     coinCost,
-			Profit:   profit,
-			Yield:    yield,
+			Name: name,
+
+			Amount:   ProcessFloat(coinAmount),
+			Sum:      ProcessFloat(coinSum),
+			NowPrice: ProcessFloat(priceUsd),
+			AvgPrice: ProcessFloat(avgPrice),
+			Cost:     ProcessFloat(coinCost),
+			Profit:   ProcessFloat(profit),
+			Yield:    fmt.Sprintf("%.2f", yield*100) + "%",
+			CmcRank:  coinInfo.CmcRank,
+		}
+		// 添加pie数组
+		coinNames = append(coinNames, name)
+		coinCosts = append(coinCosts, ProcessFloat(coinCost))
+		coinProfits = append(coinProfits, ProcessFloat(profit))
+
+		coinInfoVo.MarketCap = ConvertFloatToString(coinInfo.Quote.USD.MarketCap)
+		coinInfoVo.Volume24H = ConvertFloatToString(coinInfo.Quote.USD.Volume24H)
+		per24h := coinInfo.Quote.USD.PercentChange24H
+		per7d := coinInfo.Quote.USD.PercentChange7D
+		coinInfoVo.PercentChange24H = fmt.Sprintf("%.2f", per24h) + "%"
+		coinInfoVo.PercentChange7D = fmt.Sprintf("%.2f", per7d) + "%"
+		//原单价 = 现单价 / （1+昨日涨幅）
+		//（现单价 - 原单价） * 持有数量 = 昨日收益
+		yesPrice := coinInfo.Quote.USD.Price / (1 + (per24h * 0.01))
+		coinInfoVo.Profit24h = ProcessFloat((coinInfo.Quote.USD.Price - yesPrice) * coinAmount)
+
+		coinInfoVo.Change24hColor = models.ShallowRed
+		coinInfoVo.DeepChange24hColor = models.Red
+		coinInfoVo.YieldColor = models.ShallowRed
+		coinInfoVo.DeepYieldColor = models.Red
+		coinInfoVo.DeepChange7DColor = models.Red
+		if per24h > 0 {
+			coinInfoVo.Change24hColor = models.ShallowGreen
+			coinInfoVo.DeepChange24hColor = models.Green
+		}
+
+		if per7d > 0 {
+			coinInfoVo.DeepChange7DColor = models.Green
+		}
+
+		if yield > 0 {
+			coinInfoVo.YieldColor = models.ShallowGreen
+			coinInfoVo.DeepYieldColor = models.Green
+
 		}
 		coinInfoVos = append(coinInfoVos, coinInfoVo)
 	}
@@ -122,16 +180,74 @@ func main() {
 		log.Fatal(err)
 	}
 	defer mdFile.Close()
-	var head = models.Head + "\r" + models.Partition + "\r"
-	_, err = mdFile.WriteString(head)
+
+	var totalProfit float64
+	var totalCost float64
+	var totalYield float64
+	var totalSum float64
+	var yesProfit float64
+	for _, v := range coinInfoVos {
+		totalProfit += v.Profit
+		totalCost += v.Cost
+		totalSum += v.Sum
+		yesProfit += v.Profit24h
+	}
+	totalYield = totalProfit / totalCost
+	totalYieldString := fmt.Sprintf("%.2f", totalYield*100) + "%"
+	var templateValue = models.TemplateValue{
+		StartTime:   StartTime,
+		NowTime:     TimeFormat(time.Now()),
+		NowDay:      time.Now().Format("2006-01-02"),
+		TotalProfit: ProcessFloat(totalProfit),
+		TotalCost:   ProcessFloat(totalCost),
+		TotalYield:  totalYieldString,
+		TotalSum:    ProcessFloat(totalSum),
+	}
+	templateValue.IncomeData = coinInfoVos
+	//保存pie图的信息
+	templateValue.PieContent = chart.GetPieString(coinCosts, coinNames)
+	//保存柱状图信息
+	templateValue.BarContent = chart.GetBarString(coinProfits, coinNames)
+	templateValue.YesterdayProfit = yesProfit
+	templateValue.Days = timeSub(time.Now(), StringToTime(StartTime))
+	templateValue.YesterdayProfitColor = models.Red
+	templateValue.TotalYieldClolor = models.Red
+	if totalYield > 0 {
+		templateValue.TotalYieldClolor = models.Green
+	}
+	if templateValue.YesterdayProfit > 0 {
+		templateValue.YesterdayProfitColor = models.Green
+	}
+	//保存行情信息
+
+	templateValue.TotalMarketCap = ConvertFloatToString(coinPrice.GRes.Data.Quote.USD.TotalMarketCap)
+	tmcpc := coinPrice.GRes.Data.Quote.USD.TotalMarketCapYesterdayPercentageChange
+	if tmcpc > 0 {
+		templateValue.TotalMarketColor = models.Green
+	} else {
+		templateValue.TotalMarketColor = models.Red
+	}
+	templateValue.TotalMarketCapYesterdayPercentageChange = fmt.Sprintf("%.2f", tmcpc) + "%"
+
+	templateValue.TotalVolume24h = ConvertFloatToString(coinPrice.GRes.Data.Quote.USD.TotalVolume24H)
+	tvcpc := coinPrice.GRes.Data.Quote.USD.TotalVolume24HYesterdayPercentageChange
+	if tvcpc > 0 {
+		templateValue.TotalVolumeColor = models.Green
+	} else {
+		templateValue.TotalVolumeColor = models.Red
+	}
+	templateValue.TotalVolume24hYesterdayPercentageChange = fmt.Sprintf("%.2f", tvcpc) + "%"
+
+	// 把模板编进二进制文件中
+	tmpl, err := template.ParseFS(fs, "template/*.tmpl")
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
-	fmt.Println(head)
-	for _, v := range coinInfoVos {
-		var value = fmt.Sprintf(models.ValueFrame, v.Name, v.Amount, v.NowPrice, v.Sum, v.AvgPrice, v.Cost, v.Profit, fmt.Sprintf("%.2f", v.Yield*100)+"%")
-		fmt.Println(value)
-		_, _ = mdFile.WriteString(value)
+	err = tmpl.Execute(mdFile, templateValue)
+	if err != nil {
+		log.Fatal(err)
+		return
 	}
 
 	fmt.Println("按任意键继续...")

@@ -1,0 +1,10 @@
+{
+  "name": "celo",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 3.9,
+      "sum": 20
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "bnb",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 0.095403,
+      "sum": 40
+    },
+	{
+      "operate": "+",
+      "amount": 0.079,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 0.109,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 0.113,
+      "sum": 40
+    }
+  ]
+}

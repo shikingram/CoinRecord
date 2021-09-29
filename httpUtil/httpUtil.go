@@ -1,32 +1,36 @@
 package httpUtil
 
 import (
+	"CoinRecord/global"
 	"context"
+	"crypto/tls"
 	"fmt"
 	"github.com/pkg/errors"
 	"io/ioutil"
-	"net"
 	"net/http"
 	"time"
 )
 
 func HttpGet(url string, params map[string]string, headers map[string]string) ([]byte, error) {
-	c := http.Client{
+
+	c := &http.Client{
 		Transport: &http.Transport{
-			DialContext: (&net.Dialer{
-				Timeout: time.Second,
-			}).DialContext,
+			TLSClientConfig: &tls.Config{
+				InsecureSkipVerify: true,
+			},
+			Proxy: http.ProxyFromEnvironment,
 		},
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), 2000*time.Millisecond)
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	//new request
 	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
 		return []byte{}, errors.New("new request is fail ")
 	}
-	req.Header.Set("Content-Type", "application/json; encoding=utf-8")
-	req.Header.Set("Connection", "close")
+	req.Header.Set("Accepts", "application/json")
+	req.Header.Add("X-CMC_PRO_API_KEY", global.GlobalObject.ApiKey)
 	//add params
 	q := req.URL.Query()
 	if params != nil {
@@ -43,6 +47,7 @@ func HttpGet(url string, params map[string]string, headers map[string]string) ([
 	}
 	//http client
 	fmt.Printf("Go %s URL : %s \n", http.MethodGet, req.URL.String())
+
 	do, err := c.Do(req.WithContext(ctx))
 	if err != nil {
 		return []byte{}, errors.Wrap(err, "do req failed.")

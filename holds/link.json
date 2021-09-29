@@ -1,0 +1,25 @@
+{
+  "name": "link",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 1.526624,
+      "sum": 40
+    },
+	{
+      "operate": "+",
+      "amount": 1.14,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 1.52,
+      "sum": 40
+    },
+    {
+      "operate": "+",
+      "amount": 1.79,
+      "sum": 40
+    }
+  ]
+}
