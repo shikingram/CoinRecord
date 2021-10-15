@@ -1,18 +1,18 @@
-# 小工具---自动生成虚拟币收益数据
+# 小工具---自动生成数字货币收益数据
 ## 下载
 - [windows && osx](https://github.com/K1ngram4/CoinRecord/releases/download/v2.0/coinrecord_v1.2_template_modify.zip)
 
-- 20210928更新：添加了设置代理访问
-
+## 更新
+*20210928更新：添加了设置代理访问
 ```shell
 set https_proxy=http://127.0.0.1:1081
 ```
 
-执行可执行文件即可在records目录下生成md文件，记录收益数据
+## 源码食用方式【windows环境】
+- 效果==>[点击查看效果](http://kingram.top/posts/coin/20210928220055/)
 
-- 效果
-
-[点击查看效果](http://kingram.top/posts/coin/20210928220055/)
+- 1、下载golang环境[参考教程](http://kingram.top/posts/goland/goland_install/)
+- 2、双击执行start.bat 即可在records目录下生成md文件，记录收益数据
 
 ## 配置说明
 
