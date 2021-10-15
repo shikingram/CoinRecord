@@ -12,13 +12,15 @@ set https_proxy=http://127.0.0.1:1081
 - 效果==>[点击查看效果](http://kingram.top/posts/coin/20210928220055/)
 
 - 1、下载golang环境[参考教程](http://kingram.top/posts/goland/goland_install/)
+- 2、下载源码 `git clone https://github.com/K1ngram4/CoinRecord.git`
 - 2、双击执行start.bat 即可在records目录下生成md文件，记录收益数据
+- 
 
 ## 配置说明
 
 - cfg下需要配置coinmarket.com的apikey，可以去申请[coinmarketcap.com/api](https://coinmarketcap.com/api/)
 
-- 操作配置文件在holds目录下，json格式，多条记录分开
+- 操作记录文件在holds目录下，json格式，多条记录分开（目前是手动添加，有时间做个网页服务）
 ```json
 {
   "name": "btc",
@@ -41,5 +43,8 @@ set https_proxy=http://127.0.0.1:1081
   - opetare 操作 “+”买入   “-”卖出
   - amount 数量
   - sum 总金额 单位usdt
-  
-**一个币种一个json文件**
+
+## 注意
+- 1、一个币种一个json文件
+- 2、秒退检查cmc的apikey是否填写以及是否科学上网
+- 3、接口调不通请检查本地代理http端口是否正确
