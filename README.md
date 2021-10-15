@@ -13,8 +13,7 @@ set https_proxy=http://127.0.0.1:1081
 
 - 1、下载golang环境[参考教程](http://kingram.top/posts/goland/goland_install/)
 - 2、下载源码 `git clone https://github.com/K1ngram4/CoinRecord.git`
-- 2、双击执行start.bat 即可在records目录下生成md文件，记录收益数据
-- 
+- 3、双击执行start.bat 即可在records目录下生成md文件，记录收益数据
 
 ## 配置说明
 
