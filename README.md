@@ -5,7 +5,7 @@
 - 20210928更新：添加了设置代理访问
 
 ```shell
-set http_proxy=http://127.0.0.1:1081
+set https_proxy=http://127.0.0.1:1081
 ```
 
 执行可执行文件即可在records目录下生成md文件，记录收益数据
