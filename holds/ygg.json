@@ -1,0 +1,10 @@
+{
+  "name": "ygg",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 3.1,
+      "sum": 20
+    }
+  ]
+}

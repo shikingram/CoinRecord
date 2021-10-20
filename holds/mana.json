@@ -1,0 +1,10 @@
+{
+  "name": "mana",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 25,
+      "sum": 20
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "fil",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 0.61,
+      "sum": 40
+    }
+  ]
+}
