@@ -5,6 +5,10 @@
       "operate": "+",
       "amount": 25,
       "sum": 20
+    },{
+      "operate": "+",
+      "amount": 7,
+      "sum": 20
     }
   ]
 }
