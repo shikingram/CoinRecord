@@ -33,6 +33,10 @@
       "operate": "+",
       "amount": 2,
       "sum": 80
+    },{
+      "operate": "+",
+      "amount": 1.79,
+      "sum": 80
     }
   ]
 }

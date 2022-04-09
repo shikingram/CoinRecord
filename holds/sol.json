@@ -1,0 +1,10 @@
+{
+  "name": "sol",
+  "records": [
+    {
+      "operate": "+",
+      "amount": 0.72,
+      "sum": 80
+    }
+  ]
+}
